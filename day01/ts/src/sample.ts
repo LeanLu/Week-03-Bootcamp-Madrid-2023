@@ -38,3 +38,7 @@ aDataSyN[1] = 'Pepe';
 console.log(aData);
 
 console.log('Hola prueba');
+
+export function add(a: number, b: number) {
+  return a + b;
+}
