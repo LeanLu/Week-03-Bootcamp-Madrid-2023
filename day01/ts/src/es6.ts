@@ -56,10 +56,15 @@ interface Live {
 export class Person implements Live {
   private isAlive: boolean;
   species: string;
+  foo: any;
 
   constructor(public name: string, public age: number) {
     this.isAlive = true;
     this.species = 'humans';
+
+    // NO SE USA COLOCAR LA FUNCIÓN AQUÍ:
+    // this.foo: function() {
+    // ACCION DE LA FUNCIÓN.
   }
 
   greeting() {
@@ -86,3 +91,6 @@ type Live2 = {
   name: string;
   species: string;
 };
+
+// DAY 02 - WEEK3:
+const s2 = new Student('Ramón', 54, 'Angular');
