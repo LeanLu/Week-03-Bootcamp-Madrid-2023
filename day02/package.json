@@ -10,7 +10,8 @@
     "test:prod": "jest --watchAll --coverage --watchAll=false",
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sass": "sass sass:css --watch"
   },
   "keywords": [],
   "author": "",

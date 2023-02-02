@@ -1,28 +1,63 @@
+/* eslint-disable no-new */
 /* eslint-disable no-unused-vars */
 import { TaskStructure } from '../../models/task';
+import { TaskStorageRepo } from '../../services/repository/task.storage.repo';
+import { Add } from '../add/add';
+import { Card } from '../card/card';
 import { Component } from '../component/component';
 import './tasks.scss';
 
 export class Tasks extends Component {
-  constructor(public selector: string, public tasks: TaskStructure[]) {
+  public tasks: TaskStructure[];
+
+  constructor(public selector: string, public repo: TaskStorageRepo) {
     super();
+    this.tasks = this.repo.getTasks();
     this.template = this.createTemplate();
     this.render('afterbegin');
   }
 
+  addTask(task: TaskStructure) {
+    // El método push muta el array existente:
+    // this.tasks.push(task);
+    // Para no mutarlo:
+    this.tasks = [...this.tasks, task];
+    this.render('afterbegin');
+    this.repo.setTasks(this.tasks);
+  }
+
+  deleteTask(id: TaskStructure['id']) {
+    this.tasks = this.tasks.filter((item) => item.id !== id);
+    this.render('afterbegin');
+    this.repo.setTasks(this.tasks);
+  }
+
+  updateTask(task: TaskStructure) {
+    this.tasks = this.tasks.map((item) => (item.id === task.id ? task : item));
+    this.render('afterbegin');
+    this.repo.setTasks(this.tasks);
+  }
+
+  render(place: globalThis.InsertPosition) {
+    (document.querySelector('main') as HTMLElement).innerHTML = ``;
+    super.render(place);
+    new Add('.tasks', this.addTask.bind(this));
+    this.tasks.forEach(
+      (item) =>
+        new Card(
+          '.tasks>ul',
+          item,
+          this.deleteTask.bind(this),
+          this.updateTask.bind(this)
+        )
+    );
+  }
+
   createTemplate() {
-    const items = this.tasks
-      .map(
-        (item) => `
-        <li class="card">
-          <span>${item.isCompleted}</span>
-          <span title="${item.id}">${item.name}</span>
-          <span>${item.owner}</span>
-        </li>`
-      )
-      .join('\n');
     return `
-    <section class="tasks"><ul>${items}</ul></section>
+    <section class="tasks">
+      <ul></ul>
+    </section>
     `;
   }
 }
