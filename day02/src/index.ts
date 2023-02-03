@@ -1,11 +1,11 @@
 /* eslint-disable no-new */
+
 import { Footer } from './components/footer/footer';
 import { Header } from './components/header/header';
 import { Menu } from './components/menu/menu';
 import { Tasks } from './components/tasks/tasks';
-
 import './index.scss';
-import { TaskStorageRepo } from './services/repository/task.storage.repo';
+import { TaskApiRepo } from './services/repository/task.api.repo';
 
 // Declaramos el tipo de array del menuOptions:
 export type MenuOption = {
@@ -33,7 +33,7 @@ new Menu('.header', menuOptions);
 // console.log('Load', location.pathname);
 
 if (location.pathname === '/home') {
-  new Tasks('main', new TaskStorageRepo()); // Inyección de dependencia. Hacer una instancia de una clase en la instancia de otra.
+  new Tasks('main', new TaskApiRepo()); // Inyección de dependencia. Hacer una instancia de una clase en la instancia de otra.
 }
 
 new Footer('#root');

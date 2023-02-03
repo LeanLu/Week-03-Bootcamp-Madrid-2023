@@ -3,16 +3,15 @@
 import { TASKS } from '../../mocks/tasks';
 import { TaskStructure } from '../../models/task';
 
-localStorage.getItem('key');
-
-localStorage.setItem('key', 'value');
-
-localStorage.removeItem('key');
+// Formas de operar con localStorage:
+// localStorage.getItem('key');
+// localStorage.setItem('key', 'value');
+// localStorage.removeItem('key');
 
 export class TaskStorageRepo {
   constructor(public storeName: string = 'Tasks') {}
 
-  getTasks(): TaskStructure[] {
+  async getTasks(): Promise<TaskStructure[]> {
     const data = localStorage.getItem(this.storeName);
     if (!data) {
       this.setTasks(TASKS);
@@ -27,7 +26,7 @@ export class TaskStorageRepo {
     localStorage.setItem(this.storeName, data);
   }
 
-  removeTasks() {
+  removeStorage() {
     localStorage.removeItem(this.storeName);
   }
 }

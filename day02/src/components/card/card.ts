@@ -18,6 +18,17 @@ export class Card extends Component {
 
   render(place: globalThis.InsertPosition) {
     super.render(place);
+
+    this.element.querySelector('button')?.addEventListener('click', () => {
+      this.deleteTask(this.task.id);
+    });
+
+    this.element.querySelector('input')?.addEventListener('change', () => {
+      this.task.isCompleted = !this.task.isCompleted;
+      this.updateTask(this.task);
+    });
+
+    /* Otra fora de hacer la selección pero utilizando sus propias clases y id
     document
       .querySelector(`#b${this.task.id}`)
       ?.addEventListener('click', () => {
@@ -30,6 +41,7 @@ export class Card extends Component {
         this.task.isCompleted = !this.task.isCompleted;
         this.updateTask(this.task);
       });
+      */
   }
 
   createTemplate() {

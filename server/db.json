@@ -1,0 +1,27 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "name": "json-server",
+      "owner": "Pepe",
+      "isCompleted": true
+    },
+    {
+      "id": 2,
+      "name": "some comment",
+      "owner": "Ernesto",
+      "isCompleted": false
+    }
+  ],
+
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
