@@ -11,6 +11,12 @@
       "name": "some comment",
       "owner": "Ernesto",
       "isCompleted": false
+    },
+    {
+      "id": 3,
+      "name": "Aprender Redux",
+      "owner": "Ernesto y Pepe",
+      "isCompleted": false
     }
   ],
   "comments": [
